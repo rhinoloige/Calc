@@ -1,7 +1,7 @@
-#include <iostream>
-#include <stack>
+#include<iostream>
+#include<stack>
 #include<cmath>
-#include <algorithm>
+#include<algorithm>
 #include<string>
 
 const double Pi = acos(-1);
@@ -219,9 +219,11 @@ int main() {
     std::stack<Del> St_num;
     std::stack<Del> St_sym;
     Del item{};
-    std::string Ch;
     bool first = true;
-    std::cin >> Ch;
+    std::string Ch;
+    std::getline(std::cin, Ch, '\n');
+    std::string::iterator v = remove(Ch.begin(), Ch.end(), ' ');
+    Ch.erase(v, Ch.end());
     Ch = prepare(Ch);
     std::cout << ">" << Ch << "<" << std::endl;
     std::string tmp;
@@ -277,13 +279,14 @@ int main() {
             case 't':
             case 'e':
             case 'P':
-                if ((tmp[0] >= '0' && tmp[0] <= '9')  || (alls.find(tmp[0])!=std::string::npos)) {
+                if ((tmp[0] >= '0' && tmp[0] <= '9') || (alls.find(tmp[0]) != std::string::npos)) {
                     std::cerr << "Error: Invalid expression [double function]" << std::endl;
                     exit(1);
                 }
                 break;
             case ')':
-                if ((tmp[0] < '0' || tmp[0] > '9') && tmp[0] != 'x' && Ch[i-1] != ')' && Ch[i-1] != '(' && Ch[i-1] != 'P') {
+                if ((tmp[0] < '0' || tmp[0] > '9') && tmp[0] != 'x' && Ch[i - 1] != ')' && Ch[i - 1] != '(' &&
+                    Ch[i - 1] != 'P') {
                     std::cerr << "Error: bracket" << std::endl;
                     exit(1);
                 }
